@@ -3,28 +3,50 @@
 <html>
 <head>
     <title>My Django App</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 
-<h2 class="text-center">Student List</h2>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Student List</h2>
 
-<div class="container">
-    <table class="table table-bordered table-striped mt-3">
+    <!-- Add Student Form -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Add New Student</div>
+        <div class="card-body">
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-4">
+                    {{ form.name }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.email }}
+                </div>
+                <div class="col-md-2">
+                    {{ form.age }}
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-100">Add Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Table -->
+    <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Age</th>
-                <th scope="col">Enrolled Date</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Enrolled Date</th>
             </tr>
         </thead>
         <tbody>
             {% for student in students %}
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
+                <th>{{ forloop.counter }}</th>
                 <td>{{ student.name }}</td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.age }}</td>
@@ -39,7 +61,6 @@
     </table>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
