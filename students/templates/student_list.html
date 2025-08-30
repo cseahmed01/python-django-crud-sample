@@ -41,6 +41,7 @@
                 <th>Email</th>
                 <th>Age</th>
                 <th>Enrolled Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +52,10 @@
                 <td>{{ student.email }}</td>
                 <td>{{ student.age }}</td>
                 <td>{{ student.enrolled_date }}</td>
+                <td>
+ <a href="{% url 'student_edit' student.id %}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{% url 'student_delete' student.id %}" class="btn btn-sm btn-danger">Delete</a>
+    </td>
             </tr>
             {% empty %}
             <tr>
